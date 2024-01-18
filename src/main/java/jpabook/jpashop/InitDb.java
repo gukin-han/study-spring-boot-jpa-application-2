@@ -24,7 +24,7 @@ public class InitDb {
 
     private final InitService initService;
 
-    @PostConstruct
+    @PostConstruct // DI 이후 실행, 클래스가 서비스가 되기 전에 반드시 실행되어야 함
     public void init() {
         initService.dbInit1();
         initService.dbInit2();
