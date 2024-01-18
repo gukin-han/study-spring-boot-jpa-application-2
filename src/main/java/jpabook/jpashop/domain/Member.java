@@ -22,7 +22,7 @@ public class Member {
     @Embedded
     private Address address;
 
-    @JsonIgnore
+    @JsonIgnore // presentation layer 를 위한 의존관계가 들어왔다
     @OneToMany(mappedBy = "member")
     private List<Order> orders = new ArrayList<>();
 
