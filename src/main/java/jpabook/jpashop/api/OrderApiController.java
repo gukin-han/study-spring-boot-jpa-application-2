@@ -31,7 +31,7 @@ public class OrderApiController {
     @GetMapping("/api/v1/orders")
     public List<Order> ordersV1() {
         final List<Order> all = orderRepository.findAllByString(new OrderSearch());
-        for (Order order : all) {
+        for (Order order : all) { // OSIV를 꺼면 로딩을 트랜잭션 안에서 처리하도록 한다
             order.getMember().getName();
             order.getDelivery().getAddress();
 
@@ -46,7 +46,7 @@ public class OrderApiController {
     public List<OrderDto> ordersV2() {
         final List<Order> orders = orderRepository.findAllByString(new OrderSearch());
         return orders.stream()
-                .map(o -> new OrderDto(o))
+                .map(o -> new OrderDto(o)) // 컨트롤로 내에서 Dto를 통해 초기화를 하기 때문에 에러 발생
                 .collect(Collectors.toList());
     }
 
